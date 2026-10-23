@@ -1,0 +1,141 @@
+<% layout('layouts/boilerplate.ejs') -%>
+
+    <body>
+
+        <div class="form-container">
+
+            <%- include('../includes/sidebar.ejs') %>
+
+                <section class="main-container">
+
+                    <div class="top-pannel">
+                        <%- include('../includes/userpannel.ejs') %>
+                    </div>
+
+                    <div class="form">
+                        <div class="form-inner-container">
+                            <div class="form-heading">
+                                <h2>Add New Expense</h2>
+                                <p>Keep track of your spending and stay in control of your finances</p>
+                            </div>
+                            <div class="form-content">
+
+                                <form action="/api/expenses" method="POST" id="expenseForm" novalidate>
+
+                                    <div class="input-box">
+                                        <label for="title">Expense Title*</label>
+                                        <div class="input">
+                                            <div class="icon">
+                                                <i class="fa-solid fa-file"></i>
+                                            </div>
+                                            <input type="text" id="title" name="expense[title]"
+                                                placeholder="e.g. Groceries, Movie, Fuel" minlength="1" maxlength="20" title="Title must be contain 3-20 characters" required>
+
+                                        </div>
+                                        <%- include('../includes/errmsg.ejs') %>
+                                    </div>
+
+                                    <div class="input-box">
+                                        <label for="amount">Amount*</label>
+                                        <div class="input">
+                                            <div class="icon">
+                                                <i class="fa-solid fa-indian-rupee-sign"></i>
+                                            </div>
+                                            <input type="number" id="amount" name="expense[amount]"
+                                                placeholder="Enter amount" min="1" title="Amount at least 1 and positive number" required>
+                                        </div>
+                                        <%- include('../includes/errmsg.ejs') %>
+                                    </div>
+
+                                    <div class="input-box">
+                                        <label for="category">Category*</label>
+                                        <div class="input">
+                                            <div class="icon">
+                                                <i class="fa-regular fa-circle-dot"></i>
+                                            </div>
+
+                                            <select name="expense[category]" id="category" required>
+                                                <option value="" selected>Select category</option>
+                                                <option value="Food">Food</option>
+                                                <option value="Travel">Travel</option>
+                                                <option value="Shopping">Shopping</option>
+                                                <option value="Bills & Utilities">Bills & Utilities</option>
+                                                <option value="Entertainment">Entertainment</option>
+                                                <option value="Health">Health</option>
+                                                <option value="Education">Education</option>
+                                                <option value="Groceries">Groceries</option>
+                                                <option value="Rent">Rent</option>
+                                                <option value="Personal Care">Personal Care</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+                                        <%- include('../includes/errmsg.ejs') %>
+                                    </div>
+
+                                    <div class="input-box">
+                                        <label for="date">Date*</label>
+                                        <div class="input">
+                                            <div class="icon">
+                                                <i class="fa-regular fa-calendar"></i>
+                                            </div>
+                                            <input type="date" name="expense[date]" class="custom-date-input" id="date"
+                                                placeholder="e.g. Groceries, Movie, Fuel" required>
+                                        </div>
+                                        <%- include('../includes/errmsg.ejs') %>
+                                    </div>
+
+                                    <div class="input-box">
+                                        <label for="payment">Payment Method*</label>
+                                        <div class="input">
+                                            <div class="icon">
+                                                <i class="fa-solid fa-credit-card"></i>
+                                            </div>
+
+                                            <select name="expense[paymentMethod]" id="payment" required>
+                                                <option value="" selected>Select payment method</option>
+                                                <option value="Cash">Cash</option>
+                                                <option value="UPI">UPI</option>
+                                                <option value="Credit Card">Credit Card</option>
+                                                <option value="Debit Card">Debit Card</option>
+                                                <option value="Net Banking">Net Banking</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+                                        <%- include('../includes/errmsg.ejs') %>
+                                    </div>
+
+                                    <div class="notes-box">
+                                        <label for="date">Notes(Optional)</label>
+                                        <div class="note">
+                                            <div class="icon">
+                                                <i class="fa-regular fa-note-sticky"></i>
+                                            </div>
+                                            <textarea name="expense[notes]" id="note" rows="4"
+                                                placeholder="Add a note(e.g. for what this expense was)"></textarea>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="btn-box">
+                                        <div class="btn">
+                                            <button id="submitBtn"><i class="fa-solid fa-floppy-disk"></i>
+                                                Save Expense</button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+
+        </div>
+
+        
+        <script type="module" src="/javascript/form.js"></script>
+
+    </body>
+
+
+    </html>

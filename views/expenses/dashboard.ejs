@@ -1,0 +1,294 @@
+<% layout('layouts/boilerplate.ejs') -%>
+
+    <body>
+
+        <div class="dashboard-container">
+
+            <%- include('../includes/sidebar.ejs') %>
+
+                <section class="main-container">
+
+
+                    <div class="top-pannel">
+                        <%- include('../includes/userpannel.ejs') %>
+                            <div class="top2">
+                                <div class="box1">
+                                    <span>Welcome,</span>
+                                    <h2>Here's your money update</h2>
+                                    <span>Stay on track, make better choices.</span>
+                                </div>
+                                <div class="box2">
+                                    <span id="date"></span>
+                                </div>
+                            </div>
+                    </div>
+
+
+                    <div class="box-pannel">
+                        <div class="budget-box box">
+                            <div class="icon-box">
+                                <i class="fa-solid fa-wallet"></i>
+                            </div>
+                            <div class="text-box">
+                                <div class="text">
+                                    <span>Monthly Budget</span>
+                                    <span class="amt" id="budgetAmt">
+                                        <%= totalBudget %>
+                                    </span>
+                                </div>
+                                <% if(userBudget && userBudget.length> 0) { %>
+                                    <a href="/budgets/edit/<%= userBudget[0]._id %>">
+                                        <div class="icon"><i class="fa-solid fa-pencil"></i></div>
+                                    </a>
+                                    <% } %>
+                            </div>
+                        </div>
+
+                        <div class="spent-box box">
+                            <div class="icon-box">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </div>
+                            <div class="text-box textbx">
+                                <div class="text-box-1">
+
+                                    <div class="text">
+                                        <span>Total Spent of <%= currMonth %> month</span>
+                                        <span class="amt">₹ <%= totalSpent.toLocaleString('en-IN') %></span>
+                                    </div>
+                                </div>
+
+                                <div class="progress-bar">
+                                    <span id="spentPercentage" data-spent="<%=spentPercentage%>">
+                                        <%= spentPercentage %>% of budget
+                                    </span>
+                                    <progress id="spentProgress" max="100" value="<%= spentPercentage %>">
+                                        <%= spentPercentage %>%
+                                    </progress>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+                        <div class="balance-box box">
+                            <div class="icon-box">
+                                <i class="fa-solid fa-wallet"></i>
+                            </div>
+                            <div class="text-box textbx">
+                                <div class="text-box-1">
+
+                                    <div class="text">
+                                        <span>Total Balance of <%= currMonth %> month</span>
+                                        <span class="amt">
+                                            <%= totalBalance %>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="progress-bar">
+                                    <span id="balancePercentage" data-balance="<%=balancePercentage%>">
+                                        <%= balancePercentage || 0 %>% left
+                                    </span>
+                                    <progress id="balanceProgress" max="100" value="<%= balancePercentage %>">
+                                        <%= balancePercentage %>
+                                    </progress>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="middle-content">
+
+                        <div class="middle-left">
+
+                            <div class="category-container">
+                                <div class="category-heading">
+                                    <div class="head-left">
+                                        <div class="icon">
+                                            <i class="fa-regular fa-clock"></i>
+                                        </div>
+                                        <div class="head-text">
+                                            <h3>Spending by category</h3>
+                                            <span>Where your money goes</span>
+                                        </div>
+                                    </div>
+                                    <div class="head-right">
+                                        <div class="icon">
+                                            <i class="fa-solid fa-chart-simple"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="category-content">
+                                    <div class="horizontal-chart">
+                                        <% for(let category of categoryData) { %>
+                                            <div class="progress-bar">
+                                                <span id="">
+                                                    ₹<%= category.amount.toLocaleString('en-IN') %> - <%=
+                                                            category.category%>
+                                                </span>
+                                                <progress id="categoryProgress" max="100"
+                                                    value="<%= category.percentage %>">
+
+                                                </progress>
+
+                                            </div>
+                                            <% } %>
+                                    </div>
+                                    <div class="category-expenses">
+                                        <% for(let category of categoryData) { %>
+                                            <div class="category">
+                                                <div class="symbol"></div>
+                                                <span class="category-name">
+                                                    <%= category.category %>
+                                                </span>
+                                                <span class="category-percentage">
+                                                    <%= category.percentage %>%
+                                                </span>
+                                                <span class="category-amt">₹<%=
+                                                        category.amount.toLocaleString('en-IN')%></span>
+                                            </div>
+                                            <% } %>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="expenses-container">
+                                <div class="expenses-heading">
+                                    <div class="head-left">
+                                        <div class="icon">
+                                            <i class="fa-regular fa-clock"></i>
+                                        </div>
+                                        <div class="head-text">
+                                            <h3>Recent Expenses</h3>
+                                            <span>Your latest transactions</span>
+                                        </div>
+                                    </div>
+                                    <div class="head-right">
+                                        <div class="view-all">
+                                            <a href="/api/expenses">View All</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="expenses-content">
+                                    <div class="date-container">
+                                        <span>Date</span>
+                                        <% let dateCount=0; for(let eachExpense of userExpenses) { if(dateCount===5)
+                                            break; %>
+                                            <span>
+                                                <%= eachExpense.date.toString().split(' ').slice(1, 4).join(' ') %>
+                                        </span>
+                                        <% dateCount++; %>
+                                        <% } %>
+                                    </div>
+                                    <div class="expenses">
+                                        <div class="expense-head">
+                                            <div class="symbol"></div>
+                                            <span class="expense-description">Description</span>
+                                            <span class="expense-category">Category</span>
+                                            <span class="expense-amt">Amount</span>
+                                        </div>
+
+                                        <% let count = 0; for(let i=0; i<userExpenses.length; i++) { if(count === 5) break; %>
+                                       
+                                            <div class="expense">
+                                            <div class="symbol">
+                                                <div class="icon">
+                                                    <i class="fa-solid fa-<%= categoryIcons[userExpenses[i].category] %>"></i>
+                                                </div>
+                                            </div>
+                                            <span class="expense-name"><%= userExpenses[i].title %></span>
+                                            <span class="expense-category"><%= userExpenses[i].category %></span>
+                                            <span class="expense-amt">-₹<%= userExpenses[i].amount %></span>
+                                        </div>
+                                        <% count++; %>
+                                    <%  } %>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="middle-right">
+
+                            <div class="action-container">
+
+                                <div class="action-head">
+                                    <div class="icon"><i class="fa-solid fa-bolt"></i></div>
+                                    <span>Quick Action</span>
+                                </div>
+                                <a href="/api/new">
+                                    <div class="add-action">
+                                        <button>
+                                            <i class="fa-solid fa-plus"></i> Add New Expense
+                                        </button>
+                                    </div>
+                                </a>
+                                <div class="edit-action">
+                                    <a href="/api/expenses">
+                                        <div class="all-expenses">
+                                            <button><i class="fa-solid fa-bars"></i> View All Expenses</button>
+                                        </div>
+                                    </a>
+                                <% if(userBudget && userBudget.length > 0) { %>
+                                    <div class="monthly-budget">
+                                        <button data-budget-id="<%= userBudget[0]._id %>" id="editBudgetBtn"><i class="fa-solid fa-bullseye"></i> Edit Monthly
+                                            Budget</button>
+                                    </div>
+
+                                    <% } else { %>
+                                        <a href="/budgets/new">
+                                            <div class="monthly-budget">
+                                                <button id="setBudgetBtn"><i class="fa-solid fa-bullseye"></i> Set monthly budget</button>
+                                            </div>
+                                        </a>
+                                        <% } %>
+                                </div>
+
+                            </div>
+
+                            <div class="insight-container">
+                                <div class="insight-head">
+                                    <div class="icon">
+                                        <i class="fa-solid fa-lightbulb"></i>
+                                    </div>
+                                    <span>Insights</span>
+                                </div>
+                                <div class="insight-content">
+                                    <div class="icon">
+                                        <i class="fa-solid fa-arrow-trend-up"></i>
+                                    </div>
+                                    <div class="insight-text">
+                                        <% if(highestSpendingCategory) { %>
+                                        <p>You' re most spending in <%=highestSpendingCategory._id %> category</p>
+                                                    <% } else { %>
+                                                        <p>You did not have any spending for this month</p>
+                                                        <% } %>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="msg-container">
+                            </div>
+                        </div>
+
+                    </div>
+
+                </section>
+
+        </div>
+
+
+        <script type="module" src="/javascript/dashboard.js"></script>
+    </body>
+
+    </html>

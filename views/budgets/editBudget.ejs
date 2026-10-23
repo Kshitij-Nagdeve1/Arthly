@@ -1,0 +1,109 @@
+<% layout('layouts/boilerplate.ejs') -%>
+
+    <body>
+
+        <div class="form-container">
+
+            <%- include('../includes/sidebar.ejs') %>
+
+                <section class="main-container">
+
+                    <div class="top-pannel">
+                        <%- include('../includes/userpannel.ejs') %>
+                    </div>
+
+                    <div class="form">
+                        <div class="form-inner-container">
+                            <div class="form-heading">
+                                <h2>Edit Budget</h2>
+                                <p>Plan your spending. Save for what matters.</p>
+                            </div>
+                            <div class="form-content">
+
+                                <form novalidate>
+
+                                    <div class="input-box">
+                                        <label for="budget">Budget</label>
+                                        <div class="input">
+                                            <div class="icon">
+                                                <i class="fa-solid fa-hand-holding-dollar"></i>
+                                            </div>
+                                            <input type="number" min="1" id="budget" name="budget[totalBudget]"
+                                                placeholder="Set Monthly Budget" value="<%= budget.totalBudget %>"
+                                                required>
+
+                                        </div>
+                                        <%- include('../includes/errmsg.ejs') %>
+                                    </div>
+
+                                    <div class="input-box">
+                                        <label for="month">Month</label>
+                                        <div class="input">
+                                            <div class="icon">
+                                                <i class="fa-regular fa-calendar"></i>
+                                            </div>
+
+                                            <select name="budget[month]" id="month" required>
+                                                <option value="">Select the month</option>
+                                                <option value="1" <%=budget.month==1 ? 'selected' : '' %>>January
+                                                </option>
+                                                <option value="2" <%=budget.month==2 ? 'selected' : '' %>>February
+                                                </option>
+                                                <option value="3" <%=budget.month==3 ? 'selected' : '' %>>March</option>
+                                                <option value="4" <%=budget.month==4 ? 'selected' : '' %>>April</option>
+                                                <option value="5" <%=budget.month==5 ? 'selected' : '' %>>May</option>
+                                                <option value="6" <%=budget.month==6 ? 'selected' : '' %>>June</option>
+                                                <option value="7" <%=budget.month==7 ? 'selected' : '' %>>July</option>
+                                                <option value="8" <%=budget.month==8 ? 'selected' : '' %>>August
+                                                </option>
+                                                <option value="9" <%=budget.month==9 ? 'selected' : '' %>>September
+                                                </option>
+                                                <option value="10" <%=budget.month==10 ? 'selected' : '' %>>October
+                                                </option>
+                                                <option value="11" <%=budget.month==11 ? 'selected' : '' %>>November
+                                                </option>
+                                                <option value="12" <%=budget.month==12 ? 'selected' : '' %>>December
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <%- include('../includes/errmsg.ejs') %>
+                                    </div>
+
+
+                                    <div class="input-box">
+                                        <label for="year">Year</label>
+                                        <div class="input">
+                                            <div class="icon">
+                                                <i class="fa-regular fa-circle-dot"></i>
+                                            </div>
+                                            <input type="number" min="2000" max="2100" id="year" name="budget[year]"
+                                                placeholder="Enter year" value="<%= budget.year %>" required>
+
+                                        </div>
+                                        <%- include('../includes/errmsg.ejs') %>
+                                    </div>
+
+                                    <div class="btn-box">
+                                        <div class="btn">
+                                            <button data-edit-id="<%= budget._id %>" id="submitBtn"><i
+                                                    class="fa-solid fa-floppy-disk"></i>
+                                                Save Budget</button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+
+        </div>
+
+
+        <script type="module" src="/javascript/budgetEdit.js"></script>
+
+    </body>
+
+
+    </html>

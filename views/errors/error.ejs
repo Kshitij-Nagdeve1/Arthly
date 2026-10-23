@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | Arthly</title>
+    <link rel="stylesheet" href="/css/error.css">
+</head>
+<body>
+    <main class="error-container">
+        <a href="/" class="brand">
+            <span class="brand-icon">A</span>
+            <span>Arthly</span>
+        </a>
+
+        <section class="error-content">
+            <div class="error-illustration">
+                <span class="error-number"><%= statusCode %></span>
+            </div>
+
+            <p class="error-label">ERROR <%= statusCode %></p>
+
+            <h1> Error </h1>
+
+            <p class="error-description">
+                <%= message %>
+            </p>
+
+            <div class="error-actions">
+                <a href="/api/dashboard" class="home-button">
+                    <span>←</span> Back to Home
+                </a>
+
+                <button class="back-button" onclick="history.back()">
+                    Go Back
+                </button>
+            </div>
+        </section>
+
+        <footer>
+            <span>© 2026 Arthly</span>
+            <span>Spend Smart. Build Better.</span>
+        </footer>
+    </main>
+</body>
+</html>

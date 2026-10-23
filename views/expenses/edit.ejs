@@ -1,0 +1,159 @@
+<% layout('layouts/boilerplate.ejs') -%>
+
+    <body>
+
+        <div class="form-container">
+
+            <%- include('../includes/sidebar.ejs') %>
+
+                <section class="main-container">
+
+                    <div class="top-pannel">
+                        <%- include('../includes/userpannel.ejs') %>
+                    </div>
+
+                    <div class="form">
+                        <div class="form-inner-container">
+                            <div class="form-heading">
+                                <h2>Edit Expense</h2>
+                                <p>Keep track of your spending and stay in control of your finances</p>
+                            </div>
+                            <div class="form-content">
+
+                                <form novalidate>
+
+                                    <div class="input-box">
+                                        <label for="title">Expense Title*</label>
+                                        <div class="input">
+                                            <div class="icon">
+                                                <i class="fa-solid fa-file"></i>
+                                            </div>
+                                            <input type="text" id="title" name="expense[title]"
+                                                value="<%= expense.title %>" placeholder="e.g. Groceries, Movie, Fuel"
+                                                minlength="1" maxlength="20"
+                                                title="Title must be contain 3-20 characters" required>
+                                        </div>
+                                        <%- include('../includes/errmsg.ejs') %>
+                                    </div>
+
+                                    <div class="input-box">
+                                        <label for="amount">Amount*</label>
+                                        <div class="input">
+                                            <div class="icon">
+                                                <i class="fa-solid fa-indian-rupee-sign"></i>
+                                            </div>
+                                            <input type="number" id="amount" name="expense[amount]"
+                                                placeholder="Enter amount" min="1"
+                                                title="Amount at least 1 and positive number"
+                                                value="<%= expense.amount %>" required>
+                                        </div>
+                                        <%- include('../includes/errmsg.ejs') %>
+                                    </div>
+
+                                    <div class="input-box">
+                                        <label for="category">Category*</label>
+                                        <div class="input">
+                                            <div class="icon">
+                                                <i class="fa-regular fa-circle-dot"></i>
+                                            </div>
+
+                                            <select name="expense[category]" id="category" required>
+                                                <option value="" selected disabled>Select category</option>
+                                                <option value="Food" <%=expense.category=='Food' ? 'selected' : '' %>
+                                                    >Food</option>
+                                                <option value="Travel" <%=expense.category=='Travel' ? 'selected' : ''
+                                                    %>
+                                                    >Travel</option>
+                                                <option value="Shopping" <%=expense.category=='Shopping' ? 'selected'
+                                                    : '' %>>Shopping</option>
+                                                <option value="Bills & Utilities"
+                                                    <%=expense.category=='Bills & Utilities' ? 'selected' : '' %>>Bills
+                                                    & Utilities</option>
+                                                <option value="Entertainment" <%=expense.category=='Entertainment'
+                                                    ? 'selected' : '' %>>Entertainment</option>
+                                                <option value="Health" <%=expense.category=='Health' ? 'selected' : ''
+                                                    %>
+                                                    >Health</option>
+                                                <option value="Education" <%=expense.category=='Education' ? 'selected'
+                                                    : '' %>>Education</option>
+                                                <option value="Groceries" <%=expense.category=='Groceries' ? 'selected'
+                                                    : '' %>>Groceries</option>
+                                                <option value="Rent" <%=expense.category=='Rent' ? 'selected' : '' %>
+                                                    >Rent</option>
+                                                <option value="Personal Care" <%=expense.category=='Personal Care'
+                                                    ? 'selected' : '' %>>Personal Care</option>
+                                                <option value="Other" <%=expense.category=='Other' ? 'selected' : '' %>
+                                                    >Other</option>
+                                            </select>
+                                        </div>
+                                        <%- include('../includes/errmsg.ejs') %>
+                                    </div>
+
+                                    <div class="input-box">
+                                        <label for="date">Date*</label>
+                                        <div class="input">
+                                            <div class="icon">
+                                                <i class="fa-regular fa-calendar"></i>
+                                            </div>
+                                            <input type="date" name="expense[date]" class="custom-date-input" id="date"
+                                                placeholder="<%= expense.date.toString().split(' ').splice(1, 3).reverse().join('-') %>"
+                                                required>
+                                        </div>
+                                        <%- include('../includes/errmsg.ejs') %>
+                                    </div>
+
+                                    <div class="input-box">
+                                        <label for="payment">Payment Method*</label>
+                                        <div class="input">
+                                            <div class="icon">
+                                                <i class="fa-solid fa-credit-card"></i>
+                                            </div>
+
+                                            <select name="expense[paymentMethod]" id="paymentMethod" required>
+                                                <option value="" selected disabled>
+                                                    Select payment method
+                                                </option>
+                                                <option value="Cash" <%= expense.paymentMethod == 'Cash' ? 'selected':'' %>>Cash</option>
+                                                <option value="UPI" <%= expense.paymentMethod == 'UPI' ? 'selected':'' %>>UPI</option>
+                                                <option value="Credit Card" <%= expense.paymentMethod == 'Credit Card' ? 'selected':'' %>>Credit Card</option>
+                                                <option value="Debit Card" <%= expense.paymentMethod == 'Debit Card' ? 'selected':'' %>>Debit Card</option>
+                                                <option value="Net Banking" <%= expense.paymentMethod == 'Net Banking' ? 'selected':'' %>>Net Banking</option>
+                                                <option value="Other" <%= expense.paymentMethod == 'Other' ? 'selected':'' %>>Other</option>
+                                            </select>
+                                        </div>
+                                        <%- include('../includes/errmsg.ejs') %>
+                                    </div>
+
+                                    <div class="notes-box">
+                                        <label for="date">Notes(Optional)</label>
+                                        <div class="note">
+                                            <div class="icon">
+                                                <i class="fa-regular fa-note-sticky"></i>
+                                            </div>
+                                            <textarea name="expense[notes]" id="note" rows="4"
+                                                placeholder="Add a note(e.g. for what this expense was)"><%= expense.notes %></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="btn-box">
+                                        <div class="btn">
+                                            <button id="editBtn" data-editid=<%=expense._id %>><i
+                                                    class="fa-solid fa-floppy-disk"></i>
+                                                Save Expense</button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+
+        </div>
+
+        <script type="module" src="/javascript/edit.js"></script>
+
+    </body>
+
+    </html>

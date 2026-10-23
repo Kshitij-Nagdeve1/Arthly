@@ -1,0 +1,184 @@
+<% layout('layouts/boilerplate.ejs') -%>
+
+    <body>
+
+
+        <div class="view-expenses-container">
+
+            <%- include('../includes/sidebar.ejs') %>
+
+                <section class="main-container">
+                    <div class="top-pannel">
+                        <%- include('../includes/userpannel.ejs') %>
+                    </div>
+
+                    <div class="view-expenses">
+                        <div class="view-inner-container">
+
+                            <div class="view-top">
+
+                                <div class="icon">
+                                    <i class="fa-solid fa-bag-shopping"></i>
+                                </div>
+
+                                <div class="view-heading">
+                                    <h1>
+                                        <%= expense.title %>
+                                    </h1>
+                                    <div class="category">
+                                        <div class="icon">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                        </div>
+                                        <span>
+                                            <%= expense.category %>
+                                        </span>
+                                    </div>
+                                    <p>
+                                        <%= expense.notes %>
+                                    </p>
+                                </div>
+
+                                <div class="view-amt">
+                                    <span class="amt">₹<%= expense.amount.toLocaleString('en-IN')%></span>
+                                    <date class="date">
+                                        <div class="icon">
+                                            <i class="fa-regular fa-calendar"></i>
+                                        </div>
+                                        <span>
+                                            <%= expense.date.toString().split(' ').splice(1, 3).join(' ') %></span>
+                                </div>
+
+                                <div class="view-btns">
+                                    <a href="/api/expenses/edit/<%= expense._id %>">
+                                        <div class="edit">
+                                            <div class="icon">
+                                                <i class="fa-solid fa-pencil"></i>
+                                            </div>
+                                            <button class="edit-btn">Edit</button>
+                                        </div>
+                                    </a>
+                                    <div class="delete">
+                                        <div class="icon">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </div>
+                                        <button class="delete-btn" data-deleteid=<%= expense._id %> id="deleteBtn">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="view-info">
+                                <div class="info-box">
+                                    <div class="icon">
+                                        <i class="fa-solid fa-table-cells-large"></i>
+                                    </div>
+                                    <div class="info">
+                                        <span class="info-label">Category</span>
+                                        <span class="info-value category-value"><%= expense.category %></span>
+                                    </div>
+                                </div>
+                                <div class="info-box">
+                                    <div class="icon">
+                                        <i class="fa-regular fa-credit-card"></i>
+                                    </div>
+                                    <div class="info">
+                                        <span class="info-label">Payment</span>
+                                        <span class="info-value"><%= expense.paymentMethod %></span>
+                                    </div>
+                                </div>
+                                <div class="info-box">
+                                    <div class="icon">
+                                        <i class="fa-regular fa-calendar"></i>
+                                    </div>
+                                    <div class="info">
+                                        <span class="info-label">Date</span>
+                                        <span class="info-value"><%= expense.date.toString().split(' ').splice(1, 3).join(' ') %></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="view-details">
+                                <div class="notes-container">
+                                    <div class="details-heading">
+                                        <div class="icon">
+                                            <i class="fa-regular fa-note-sticky"></i>
+                                        </div>
+                                        <h4>Notes</h4>
+                                    </div>
+                                    <div class="note">
+                                        <p><%= expense.notes %></p>
+                                    </div>
+                                </div>
+                                <div class="summary-container">
+
+                                    <div class="details-heading">
+                                        <div class="icon">
+                                            <i class="fa-solid fa-chart-simple"></i>
+                                        </div>
+                                        <h4>Expense Summary</h4>
+                                    </div>
+
+                                    <div class="expense-details">
+                                        <div class="each-detail">
+                                            <span class="detail-label">Title</span>
+                                            <span class="detail-value"><%= expense.title %></span>
+                                        </div>
+
+
+                                        <div class="each-detail">
+                                            <span class="detail-label">Category</span>
+                                            <div class="category">
+                                                <div class="icon">
+                                                    <i class="fa-solid fa-cart-shopping"></i>
+                                                </div>
+                                                <span><%= expense.category %></span>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="each-detail">
+                                            <span class="detail-label">Amount</span>
+                                            <span class="detail-value">₹<%= expense.amount.toLocaleString('en-IN')%>
+                                        </span>
+                                </div>
+
+
+                                <div class="each-detail">
+                                    <span class="detail-label">Payment</span>
+                                    <span class="detail-value">
+                                        <%= expense.paymentMethod %>
+                                    </span>
+                                </div>
+
+
+                                <div class="each-detail">
+                                    <span class="detail-label">Date</span>
+                                    <span class="detail-value">
+                                        <%= expense.date.toString().split(' ').splice(1, 3).join(' ')%></span>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="view-time">
+                                <div class="icon">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                </div>
+                                <p>This expense was added on <%= expense.date%>.</p>
+                            </div>
+
+                        </div>
+                    </div>
+        </div>
+
+        </section>
+
+        </div>
+
+        
+    <script type="module" src="/javascript/view.js"></script>
+
+    </body>

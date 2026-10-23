@@ -1,0 +1,112 @@
+<% layout('layouts/boilerplate.ejs') -%>
+
+    <body>
+
+        <div class="all-expenses-container">
+
+            <%- include('../includes/sidebar.ejs') %>
+
+                <section class="main-container">
+                    <div class="top-pannel">
+                        <%- include('../includes/userpannel.ejs') %>
+                    </div>
+                    <div class="all-expenses">
+
+                        <div class="expenses-inner-container">
+
+                            <div class="all-expenses-heading">
+                                <h2>All Expenses</h2>
+                                <p>View and manage all your expenses in one place</p>
+                            </div>
+
+                            <div class="all-expenses-content">
+                                <div class="features">
+
+                                    <div class="search-bar">
+                                        <div class="icon">
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                        </div>
+                                        <div class="search">
+                                            <input type="text" id="search" placeholder="Search by title">
+                                        </div>
+                                    </div>
+
+                                    <div id="filter-sort-control">
+                                        <div class="input-box">
+                                            <div class="input">
+                                                <div class="icon">
+                                                    <i class="fa-solid fa-filter"></i>
+                                                </div>
+
+                                                <select name="" id="categories">
+                                                    <option value="">All Categories</option>
+                                                    <option value="Food">Food</option>
+                                                    <option value="Travel">Travel</option>
+                                                    <option value="Shopping">Shopping</option>
+                                                    <option value="Bills & Utilities">Bills & Utilities</option>
+                                                    <option value="Entertainment">Entertainment</option>
+                                                    <option value="Health">Health</option>
+                                                    <option value="Education">Education</option>
+                                                    <option value="Groceries">Groceries</option>
+                                                    <option value="Rent">Rent</option>
+                                                    <option value="Personal Care">Personal Care</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="input-box">
+                                            <div class="input">
+                                                <div class="icon">
+                                                    <i class="fa-solid fa-up-down"></i>
+                                                </div>
+
+                                                <select name="" id="sort">
+                                                    <option value="">Sort by amount</option>
+                                                    <option value="1">Low to High</option>
+                                                    <option value="-1">High to Low</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="expenses-data">
+                                    <div class="expenses-labels">
+                                        <span class="date-label">Date</span>
+                                        <span class="title-label">Title</span>
+                                        <span class="category-label">Category</span>
+                                        <span class="amount-label">Amount</span>
+                                        <span class="action-label">Actions</span>
+                                    </div>
+
+                                    <div class="show-expenses-container">
+                                        <% for(let expense of allExpenses) { %>
+
+                                            <div class="each-expense">
+                                                <span class="date-value">
+                                                    <%= expense.date.toString().split(' ').splice(1, 3).join(' ') %></span>
+                                            <span class="title-value">
+                                                <%= expense.title %>
+                                            </span>
+                                            <span class="category-value"><%= expense.category %></span>
+                                            <span class="amount-value">₹<%= expense.amount.toLocaleString('en-IN') %>
+                                                </span>
+                                                <a href="/api/expenses/view/<%= expense._id %>">
+                                                    <div class="icon"><i class="fa-regular fa-eye"></i></div>
+                                                    <button class="view-btn">View</button>
+                                                </a>
+                                            </div>
+
+                                            <% } %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <script src="/javascript/expenses.js"></script>
+    </body>

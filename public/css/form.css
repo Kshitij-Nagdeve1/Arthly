@@ -1,0 +1,240 @@
+.form-container {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    height: 100%;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+}
+
+.form-inner-container {
+    width: 90%;
+    padding: 2rem;
+    background-color: #102238;
+    border: 1px solid #21415D;
+    border-radius: 18px;
+}
+
+.form-inner-container .form-heading p {
+    color: #a9bdd1;
+}
+
+.form-content {
+    margin-top: 1.5rem;
+}
+
+.form-content form {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    position: relative;
+    padding-bottom: 4rem;
+}
+
+.form-content .input-box,
+.notes-box {
+    display: flex;
+    flex-direction: column;
+    width: 49%;
+    gap: 4px;
+    margin-top: 0.8rem;
+}
+
+
+.input-box .input,
+.notes-box .note {
+    width: 100%;
+    display: flex;
+    background-color: #11243A;
+    border: 1px solid #294763;
+    border-radius: 12px;
+}
+
+.input .icon,
+.note .icon {
+    width: 10%;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.input .icon i,
+.note .icon i {
+    font-size: 1.04rem;
+}
+
+.input input,
+select,
+.note textarea {
+    width: 90%;
+    padding: 1rem 0.5rem;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border: none;
+    outline: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    background-color: transparent;
+    color: #F1F5F9;
+}
+
+.input input,
+select {
+    width: 88%;
+}
+
+.input input::placeholder {
+    font-size: 0.95rem;
+    color: #8FA9C4;
+}
+
+.input:hover {
+    border-color: #3B9E96;
+    box-shadow: 0 0 0 3px rgba(59, 158, 150, 0.15);
+}
+
+select,
+input[type="date"] {
+    color: #8FA9C4;
+}
+
+/* 1. Opt-in to the modern, customizable styling state */
+select,
+select::picker(select) {
+    appearance: base-select;
+}
+
+/* 2. Style the main wrapper/button trigger */
+select {
+    cursor: pointer;
+}
+
+/* 3. Style the actual dropdown picker (listbox) */
+select::picker(select) {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* 4. Style the specific option items */
+select option {
+    padding: 10px;
+    color: #ffffff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* 5. Style the selected and hovered option states */
+select option:hover,
+select option:focus {
+    background-color: #007bff;
+    color: white;
+}
+
+/* 6. Style or change the native checkmark icon */
+select option::checkmark {
+    color: #007bff;
+    content: "✓";
+}
+
+
+.custom-date-input {
+    position: relative;
+}
+
+/* Hide the visual icon but stretch it to cover the entire input */
+.custom-date-input::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: auto;
+    color: transparent;
+    background: transparent;
+    cursor: pointer;
+}
+
+.notes-box {
+    width: 100%;
+}
+
+.notes-box .note {
+    align-items: baseline;
+}
+
+.note textarea {
+    width: 100%;
+}
+
+.note .icon {
+    width: 4%;
+}
+
+.form-content .btn-box {
+    width: 14%;
+    border-radius: 12px;
+    background-color: #0c8313;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.btn-box .btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-box .btn .icon {
+    width: 20%;
+}
+
+.btn button {
+    background-color: transparent;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 0.8rem 0;
+    font-size: 1.01rem;
+}
+
+
+.input-box .err-msg {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-top: 2px;
+}
+
+.input-box .err-msg .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.err-msg .icon .icon-red {
+    color: red;
+}
+
+.err-msg small {
+    color: red;
+}
+
+.input-box .hidden {
+    display: none;
+}
+
+.input-box .show {
+    display: inline-block;
+}

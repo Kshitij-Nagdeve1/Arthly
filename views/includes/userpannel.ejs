@@ -1,0 +1,19 @@
+<div class="top1">
+    <div class="user-info">
+        <div class="icon"><i class="fa-regular fa-bell"></i></div>
+        <div class="info">
+            <div class="user-img">
+                <img src="/assets/userprofile.webp" alt="userImage">
+            </div>
+            <div class="username">
+                <span>
+                    <% if(curruser) { %>
+                        <%=curruser.username%>
+                            <% } else { %>
+                                user
+                                <% } %>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

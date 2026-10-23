@@ -1,0 +1,100 @@
+.signup-container {
+    height: 100vh;
+    background-image: url('../assets/signupbg.png');
+    background-size: cover;
+}
+
+.signup-form {
+    width: max-content;
+    height: max-content;
+    padding: 2rem 1rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 16px;
+    background-color: #102238;
+    border: 1px solid #21415D;
+}
+
+
+.signup-heading {
+    width: 95%;
+    padding: 1rem;
+}
+
+.signup-heading h2 {
+    line-height: 2.2rem;
+    font-weight: 500;
+}
+
+.signup-heading p {
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: #a2bacd;
+}
+
+.signup-form .signup-content {
+    width: 95%;
+    padding: 1rem;
+}
+
+.signup-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.signup-content form .input-box .input .icon {
+    width: 15%;
+}
+
+.form-btn {
+    width: 100%;
+    background-color: #129d42;
+    padding: 0.9rem 0;
+    font-size: 1.04rem;
+    font-weight: 500;
+    border: none;
+    outline: none;
+    border-radius: 12px;
+}
+
+.or {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+
+.or hr {
+    width: 45%;
+    border: 0;
+    height: 1px;
+    background-color: #ccc;
+}
+
+.or span {
+    color: #a2bacd;
+}
+
+.already-account {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.already-account p {
+    font-weight: 400;
+    color: #a2bacd;
+}
+
+.already-account a {
+    color: #12ffdd;
+}

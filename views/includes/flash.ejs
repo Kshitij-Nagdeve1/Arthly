@@ -1,0 +1,31 @@
+<% if(success && success.length) { %>
+
+    <div class="flash-container">
+        <div class="icon"><i class="fa-regular fa-circle-check"></i></div>
+        <div class="msg">
+            <p id="flashMsg">
+                <%= success %>
+            </p>
+        </div>
+        <div class="cross-icon" id="crossMark">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+    </div>
+
+    <% } %>
+
+        <% if(error && error.length) { %>
+            <div class="flash-container err">
+                <div class="icon"><i class="fa-regular fa-circle-xmark"></i></div>
+                <div class="msg">
+                    <p>
+                        <%= error %>
+                    </p>
+                </div>
+                <div class="cross-icon" id="crossMark">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+            </div>
+
+            <% } %>
+                <script src="/javascript/flash.js"></script>

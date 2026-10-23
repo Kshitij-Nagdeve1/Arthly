@@ -1,0 +1,64 @@
+<% layout('layouts/boilerplate') -%>
+
+    <section class="sidebar">
+        <div class="sidebar-container">
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="/assets/logo.png" alt="Logo">
+                </div>
+            </div>
+
+            <div class="sections">
+                <div class="dashboard-section section">
+                    <div class="section-icon"><i class="fa-regular fa-house"></i></div>
+                    <div class="section-name">
+                        <a href="/api/dashboard">Dashboard</a>
+                    </div>
+                </div>
+                <div class="add-section section">
+                    <div class="section-icon"><i class="fa-solid fa-plus"></i></div>
+                    <div class="section-name">
+                        <a href="/api/new">Add Expense</a>
+                    </div>
+                </div>
+                <div class="show-all-section section">
+                    <div class="section-icon"><i class="fa-solid fa-bars"></i></div>
+                    <div class="section-name">
+                        <a href="/api/expenses">All Expenses</a>
+                    </div>
+                </div>
+
+                <% if(curruser) { %>
+
+                    <div class="logout-section section">
+                        <div class="section-icon"><i class="fa-solid fa-right-from-bracket"></i></i></div>
+                        <div class="section-name">
+                            <a href="/logout">Logout</a>
+                        </div>
+                    </div>
+
+                    <% } else { %>
+                        <div class="login-section section">
+                            <div class="section-icon"><i class="fa-solid fa-right-to-bracket"></i></div>
+                            <div class="section-name">
+                                <a href="/login">Login</a>
+                            </div>
+                        </div>
+
+                        <% } %>
+
+            </div>
+
+            <div class="quote-container">
+                <div class="quote-box">
+                    <div class="logo">
+                        <img src="/assets/leaves.logo.png" alt="Logo">
+                    </div>
+                    <div class="quote">
+                        <p>Small steps today, big freedom tomorrow</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
