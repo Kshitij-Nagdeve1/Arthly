@@ -20,7 +20,7 @@ Authentication: Secure user sign-up and log-in.
 
 Botanical Dark Theme: Minimalist UI with dark slate (#0B131E) and mint green (#71DDA0) accents.
 
-(It is not responsove so open it on the desktop or on laptop)
+(It is not responsive so open it on the desktop or on laptop)
 
 🛠️ Tech Stack
 
